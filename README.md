@@ -1,2 +1,3 @@
-# polar-relation-extraction
-A web application to extract co-occurrence relations between predefined lists of disease and medication terms.
+# Code and Resource for the POLAR project
+
+This repository contains code and resources for the POLAR project that may be made public.
