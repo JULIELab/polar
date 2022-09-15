@@ -19,6 +19,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * <p>
+ * This component should be applied after the disease and medication entities have been recognized in the input texts.
+ * Then, pairs of disease and medication entities are assembled into the final output.
+ * </p>
+ */
 @Service
 @Scope(value = "singleton")
 public class RelationExtractionService {

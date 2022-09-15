@@ -9,12 +9,16 @@ import org.springframework.stereotype.Service;
 
 import java.util.concurrent.ArrayBlockingQueue;
 
+/**
+ * This service allows the creation of a number of analysis pipelines that fulfill the task of this application
+ * (see {@link de.julielab.polar.pipeline.webservice.PipelineWebserviceApplication} for the purpose of the application).
+ * This is required to serve multiple requests concurrently.
+ */
 @Service
 public class PolarPipelineService {
     private final static Logger log = LoggerFactory.getLogger(PolarPipelineService.class);
     private PolarPipelineFactory polarPipelineFactory;
     private ArrayBlockingQueue<UimaAnalysisEngineSequence> pipelineRepository;
-    private int createdPipelines;
 
     public PolarPipelineService(@Value("${" + ConfigurationConstants.POLAR_NUMCONCURRENTPIPELINES + ":1}") int numConcurrentPipelines, PolarPipelineFactory polarPipelineFactory) throws Exception {
         this.polarPipelineFactory = polarPipelineFactory;

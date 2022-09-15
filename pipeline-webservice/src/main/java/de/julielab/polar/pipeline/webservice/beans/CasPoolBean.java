@@ -15,6 +15,13 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 
+/**
+ * <p>
+ * UIMA components use CAS objects to store and manipulate data. Each CAS corresponds to one input text.
+ * </p>
+ * <p>This component manages fixed-size pool of CAS objects. It basically just offers CASes and saves resources
+ * by re-using them. This is normal procedure in UIMA to avoid the costly creation of CAS objects.</p>
+ */
 @Component
 @Scope(value = "singleton")
 public class CasPoolBean {

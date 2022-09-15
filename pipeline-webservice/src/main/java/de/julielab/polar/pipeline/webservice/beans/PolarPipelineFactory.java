@@ -18,9 +18,17 @@ import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 
+/**
+ * <p>
+ * This component is responsible for the creation of the text analysis pipelines that add the disease and medication
+ * annotations to the input texts.
+ * </p>
+ * <p>This class also manages a fixed number of pipelines for reuse. This saves resources and avoids an overflow of
+ * requests.</p>
+ */
 @Component
 public class PolarPipelineFactory implements FactoryBean<UimaAnalysisEngineSequence> {
-private final static Logger log = LoggerFactory.getLogger(PolarPipelineFactory.class);
+    private final static Logger log = LoggerFactory.getLogger(PolarPipelineFactory.class);
     private final ExternalResourceDescription externalResource4diseases;
     private final ExternalResourceDescription externalResource4medication;
 
@@ -30,10 +38,18 @@ private final static Logger log = LoggerFactory.getLogger(PolarPipelineFactory.c
         externalResource4medication = getExternalResourceDescription4Gazetteer(medicationDictPath);
     }
 
+    /**
+     * <p>
+     * External resources are a UIMA mechanism to offer larger resources like dictionaries to multiple UIMA analysis
+     * components without the need to copy the resources. This lowers memory usage.
+     * </p>
+     * @param dictionaryPath The file path to the dictionary to load for this resource.
+     * @return The external resource description for the given dictionary file.
+     */
     private ExternalResourceDescription getExternalResourceDescription4Gazetteer(String dictionaryPath) {
         final ExternalResourceDescription externalResource4fall;
         externalResource4fall = ExternalResourceFactory.createExternalResourceDescription(
-                ConfigurableChunkerProviderImplAlt.class, "file:"+ dictionaryPath,
+                ConfigurableChunkerProviderImplAlt.class, "file:" + dictionaryPath,
                 ConfigurableChunkerProviderImplAlt.PARAM_CASE_SENSITIVE, false,
                 ConfigurableChunkerProviderImplAlt.PARAM_NORMALIZE_TEXT, true,
                 ConfigurableChunkerProviderImplAlt.PARAM_TRANSLITERATE_TEXT, false,
@@ -68,13 +84,13 @@ private final static Logger log = LoggerFactory.getLogger(PolarPipelineFactory.c
     }
 
     private AnalysisEngine getDiseaseGazetteer() throws ResourceInitializationException {
-        return  AnalysisEngineFactory.createEngine(GazetteerAnnotator.class,
+        return AnalysisEngineFactory.createEngine(GazetteerAnnotator.class,
                 GazetteerAnnotator.PARAM_OUTPUT_TYPE, "de.julielab.jcore.types.Disease",
                 GazetteerAnnotator.CHUNKER_RESOURCE_NAME, externalResource4diseases);
     }
 
     private AnalysisEngine getMedicationGazetteer() throws ResourceInitializationException {
-        return  AnalysisEngineFactory.createEngine(GazetteerAnnotator.class,
+        return AnalysisEngineFactory.createEngine(GazetteerAnnotator.class,
                 GazetteerAnnotator.PARAM_OUTPUT_TYPE, "de.julielab.jcore.types.medical.Medication",
                 GazetteerAnnotator.CHUNKER_RESOURCE_NAME, externalResource4medication);
     }
