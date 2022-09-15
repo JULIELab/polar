@@ -34,7 +34,9 @@ class ApplicationTests {
                 .andExpect(status().isOk())
                 .andExpect(content()
                         .contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$[0].doc_id", is("4711")));
+                .andExpect(jsonPath("$[0].doc_id", is("4711")))
+                .andExpect(jsonPath("$[0].disease_text", is("Beinbruch")))
+                .andExpect(jsonPath("$[0].medication_text", is("Aspirin")));
     }
 
 }
