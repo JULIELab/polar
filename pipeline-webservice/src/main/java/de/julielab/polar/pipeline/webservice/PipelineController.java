@@ -39,6 +39,7 @@ public class PipelineController {
     @PostMapping(path = "/pipeline")
     public List<OutputRelation> runPipeline(@RequestBody List<InputText> input) throws PipelineRunException {
         try {
+            final UimaAnalysisEngineSequence polarPipeline = pipelineService.getPolarPipeline();
             List<OutputRelation> allRelations = new ArrayList<>();
             for (InputText text : input) {
                 final CAS cas = casPoolBean.getCas();
@@ -47,7 +48,6 @@ public class PipelineController {
                 h.setDocId(text.getTextId());
                 h.addToIndexes();
                 jCas.setDocumentText(text.getText());
-                final UimaAnalysisEngineSequence polarPipeline = pipelineService.getPolarPipeline();
                 polarPipeline.process(jCas);
                 final List<OutputRelation> relations4document = relationExtractionService.extractRelations(jCas);
                 allRelations.addAll(relations4document);
@@ -60,7 +60,6 @@ public class PipelineController {
             throw new PipelineRunException("POLAR pipeline run failed", e);
         }
     }
-
 
 
 }
