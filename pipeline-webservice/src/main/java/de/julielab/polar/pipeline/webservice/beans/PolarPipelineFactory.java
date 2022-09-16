@@ -32,8 +32,8 @@ public class PolarPipelineFactory implements FactoryBean<UimaAnalysisEngineSeque
     private final ExternalResourceDescription externalResource4diseases;
     private final ExternalResourceDescription externalResource4medication;
 
-    public PolarPipelineFactory(@Value("${" + ConfigurationConstants.POLAR_DISEASEDICTIONARY + ":/var/polar/disease_dicts.tsv}") String diseaseDictPath,
-                                @Value("${" + ConfigurationConstants.POLAR_MEDICATIONDICTIONARY + ":/var/polar/combinedDrugs.lingpipe}") String medicationDictPath) {
+    public PolarPipelineFactory(@Value("${" + ConfigurationConstants.POLAR_DISEASEDICTIONARY + "}") String diseaseDictPath,
+                                @Value("${" + ConfigurationConstants.POLAR_MEDICATIONDICTIONARY + "}") String medicationDictPath) {
         externalResource4diseases = getExternalResourceDescription4Gazetteer(diseaseDictPath);
         externalResource4medication = getExternalResourceDescription4Gazetteer(medicationDictPath);
     }
@@ -47,6 +47,7 @@ public class PolarPipelineFactory implements FactoryBean<UimaAnalysisEngineSeque
      * @return The external resource description for the given dictionary file.
      */
     private ExternalResourceDescription getExternalResourceDescription4Gazetteer(String dictionaryPath) {
+        log.info("Loading dictionary from {}", dictionaryPath);
         final ExternalResourceDescription externalResource4fall;
         externalResource4fall = ExternalResourceFactory.createExternalResourceDescription(
                 ConfigurableChunkerProviderImplAlt.class, "file:" + dictionaryPath,
