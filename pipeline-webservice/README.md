@@ -1,10 +1,15 @@
 # JULIE Lab Analysis Pipeline for POLAR
 
-In the context of the POLAR project the JULIE Lab offers a prototype of a text analysis pipeline for the automatic extraction of associations between a set of predefined conditions - fall events and delir states - with medications. Dictionaries have been tailored to recognize the corresponding entities in German clinical texts. Pairs of conditions and medications are the compiled from input texts and returned.
+In the context of the POLAR project the JULIE Lab offers a prototype of a text analysis pipeline for the automatic extraction of associations between a set of predefined conditions - fall events and delir states - with textual mentions of medications. Dictionaries have been tailored to recognize the corresponding entities in German clinical texts. The application compiles pairs of conditions and medications from input texts and returns them.
 
 **NOTE:** The dictionaries created within the project are not part of this repository. Some resources used for the dictionaries prohibit their public distribution.
 
 The pipeline is realized as a sequence of [JCoRe](https://github.com/JULIELab/jcore-base) components for the segmentation of inputs texts into sentences and tokens and the dictionary-based recognition of entities. This happens within a Java web service that offers a REST interface.
+The components used are
+
+- [A German medical sentence splitter](https://github.com/JULIELab/jcore-projects/tree/v2.6/jcore-jsbd-ae-medical-german)
+- [A German medical tokenizer](https://github.com/JULIELab/jcore-projects/tree/v2.6/jcore-jtbd-ae-medical-german)
+- [A dictionary-based entity recognizer](https://github.com/JULIELab/jcore-base/tree/v2.6/jcore-lingpipegazetteer-ae)
 
 The web service is a [Spring Boot](https://spring.io/projects/spring-boot) application.
 
