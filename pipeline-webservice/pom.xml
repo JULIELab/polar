@@ -10,7 +10,7 @@
     </parent>
     <groupId>de.julielab</groupId>
     <artifactId>polar-pipeline-webserver</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0-SNAPSHOT</version>
     <name>POLAR Pipeline Webserver</name>
     <description>A spring boot application to provide a web service for the POLAR entity relation extraction pipeline.
     </description>
