@@ -1,6 +1,6 @@
 # JULIE Lab Analysis Pipeline for POLAR
 
-In the context of the POLAR project the JULIE Lab offers a prototype of a text analysis pipeline for the automatic extraction of associations between a set of predefined conditions - fall events and delir states - with textual mentions of medications. Dictionaries have been tailored to recognize the corresponding entities in German clinical texts. The application compiles pairs of conditions and medications occurring together from input texts and returns them.
+In the context of the [POLAR](https://www.medizininformatik-initiative.de/de/POLAR) project the JULIE Lab offers a prototype of a text analysis pipeline for the automatic extraction of associations between a set of predefined conditions - fall events and delir states - with textual mentions of medications. Dictionaries have been tailored to recognize the corresponding entities in German clinical texts. The application compiles pairs of conditions and medications occurring together from input texts and returns them.
 
 **NOTE:** The dictionaries created within the project are not part of this repository. Some resources used for the dictionaries prohibit their public distribution.
 
