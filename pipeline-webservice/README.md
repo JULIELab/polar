@@ -17,15 +17,16 @@ The web service is a [Spring Boot](https://spring.io/projects/spring-boot) appli
 
 The quickest way to start up the pipeline application is to use the official Docker image like this:
 ```
-docker run --rm -p 8080:8080 -v /path/to/dictionary/dir:/resources julielab/polarpipeline:1.0.0-SNAPSHOT
+docker run --rm -p 8080:8080 -v /absolute/path/to/dictionary/dir:/resources julielab/polarpipeline:1.0.0-SNAPSHOT
 ```
-where the condition and medication dictionaries must be present directly in the directory `/path/to/dictionary/dir`. The dictionary files must be named `disease_dict.tsv` and `medication_dict.tsv`, respectively.
+where the condition and medication dictionaries must be present directly in the directory `/absolute/path/to/dictionary/dir`. The dictionary files must be named `disease_dict.tsv` and `medication_dict.tsv`, respectively. Both paths must be absolute.
+Then, the web service will be available at `http://localhost:8080/pipeline`.
 
 ## Web service Usage
 
 The web service can be run in multiple ways. When running the service, the locations of the entity dictionaries must be specified. There are several ways to do this. In the examples below, the respective configuration properties are specified inline as environment variables or command line arguments. If the dictionary path does not often change, a more comfortable alternative could be to put the property definitions into the `src/main/resources/application.properties` file. Note that when using environment variables, by convention the property names are upper-cased and dots are replaced by underscores. The dictionary files must be named `disease_dict.tsv` and `medication_dict.tsv`, respectively.
 
-The application offers a REST interface. It expects the input in JSON format and sends JSON responds. The input format is a list of input texts:
+The application offers a REST interface at the context path `pipeline`. It expects the input in JSON format and sends JSON responds. The input format is a list of input texts:
 
 ```json
 [{"text": "Der Patient wurde mit einem Armbruch vorstellig. Es wurde Ibuprofen gegen die Schmerzen verschrieben.", "textId":  "4711"},{"text":  "...", "textId": "..."}]
@@ -90,10 +91,10 @@ All configuration variables can be set as environment variables using the `-e` s
 
 On the command line, type
 ```
-docker run --rm -p 8080:8080 -v /path/to/dictionary/dir:/resources julielab/polarpipeline:1.0.0-SNAPSHOT
+docker run --rm -p 8080:8080 -v /absolute/path/to/dictionary/dir:/resources julielab/polarpipeline:1.0.0-SNAPSHOT
 ```
 
-This will download the official image, create and run a container. The web application is then available under port 8080.
+This will download the official image, create and run a container. The web application is then available under port 8080 with path `/pipeline`.
 
 #### With a Docker image built from the repository code
 
@@ -103,7 +104,7 @@ docker build . -t mypolarwebapp:1.0.0-SNAPSHOT
 ```
 to create a new image named `mypolarwebapp` with version `1.0.0-SNAPSHOT.`. Create and run a container using 
 ```
-docker run --rm -p 8080:8080 -v /path/to/dictionary/dir:/resources mypolarwebapp:1.0.0-SNAPSHOT
+docker run --rm -p 8080:8080 -v /absolute/path/to/dictionary/dir:/resources mypolarwebapp:1.0.0-SNAPSHOT
 ```
 just as with the official image.
 
