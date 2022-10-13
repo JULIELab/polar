@@ -1,0 +1,7 @@
+*.json
+*.idea
+*.png
+*.csv
+out/
+venv
+pyvenv.cfg
