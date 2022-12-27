@@ -10,7 +10,7 @@
     </parent>
     <groupId>de.julielab</groupId>
     <artifactId>polar-pipeline-webserver</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.0</version>
     <name>POLAR Pipeline Webserver</name>
     <description>A spring boot application to provide a web service for the POLAR entity relation extraction pipeline.
     </description>
@@ -18,7 +18,7 @@
         <java.version>11</java.version>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
-        <jcore.version>2.6.0-SNAPSHOT</jcore.version>
+        <jcore.version>2.6.0</jcore.version>
     </properties>
     <dependencies>
 
